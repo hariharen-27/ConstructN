@@ -10,9 +10,9 @@ export class BookInterceptor implements NestInterceptor{
     intercept(context:ExecutionContext,next:CallHandler<Book[]>):Observable<any> | Promise<Observable<any>>{
         console.log(context.getClass().name);
         return next
-        .handle().pipe(map((data)=>data.map((book)=>plainToInstance(Book,book))))
-        //.pipe(map(data=>({data})))
-        // 
+        .handle()
+        .pipe(map(data=>({data})))
+        // .pipe(map((data)=>data.map((book)=>plainToInstance(Book,book))))
         // .pipe(map((data)=>{
         //     if(data && typeof data==='object'){
         //         const{description,...otherdata}=data;

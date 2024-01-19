@@ -32,11 +32,20 @@ export class BookService {
     return book;
   }
 
-  async updateById(id: string, book: Book): Promise<Book> {
+  async updateById(id: string, book: Book,user:User): Promise<any> {
+    
+   // 
+    //console.log(book);
+    const createrId=await this.bookModel.findById(id);
+
+    if(JSON.stringify(createrId.user) === JSON.stringify(user._id)){
     return await this.bookModel.findByIdAndUpdate(id, book, {
       new: true,
       runValidators: true,
-    });
+    });}
+    else{
+      return "You are not allowed to update the book that is created by other user";
+    }
   }
 
   async deleteById(id: string): Promise<Book> {

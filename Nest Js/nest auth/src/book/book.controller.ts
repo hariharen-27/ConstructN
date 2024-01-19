@@ -31,7 +31,7 @@ export class BookController {
 
   @Post()
   @UseGuards(AuthGuard())
-  async createBook(@Body() book: CreateBookDto, @Req() req): Promise<Book> {
+  async createBook(@Body() book: CreateBookDto, @Req() req): Promise<any> {
     //console.log("controller"+book.title)
     // console.log(req)
     // console.log(req.user)
@@ -48,14 +48,16 @@ export class BookController {
   }
 
   @Put(':id')
+  @UseGuards(AuthGuard())
   async updateBook(
     @Param('id')
     id: string,
     @Body()
     book: UpdateBookDto,
-    
+    @Req() req
   ): Promise<Book> {
-    return this.bookService.updateById(id, book);
+   // console.log(req);
+    return this.bookService.updateById(id, book,req.user);
   }
 
   @Delete(':id')
