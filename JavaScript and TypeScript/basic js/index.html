@@ -1,0 +1,172 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS</title>
+     <link rel="stylesheet" href="index.css"/> 
+
+</head>
+<body>
+    <div class="centering">
+    <h1 id="demo"></h1>
+    <button onclick="alerts()">click</button>
+    <script src="index.js"></script>
+    <input type="text" id="say" />
+    <input type="button" onclick="printvalue()" value="print"/> 
+    <input type="button" value="comment" onclick="showcommentform()">
+    <div id="mylocations"></div>
+    <form name="myform">
+    <input type="password" value="" id="userPass" onkeyup="validate()">  
+    Strength:<span id="mylocation">no strength</span>  
+</form>
+</div>
+
+<div style="background-color: white; height: 100%; width: 10%; padding: 5%;border:2px solid black; " id="colorBox"></div>
+<button id="change" onclick="changeColor()"> change</button>
+</body>
+</html> -->
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalStorage Example</title>
+    <style>
+        .user-item {
+            margin-bottom: 10px;
+            display:flex;
+        }
+
+        .username {
+            font-weight: bold;
+        }
+
+        .age {
+            color: #888;
+        }
+
+        .set-button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <label for="username">Username:</label>
+    <input type="text" id="username">
+    <label for="age">Age:</label>
+    <input type="number" id="age">
+    <button id="saveButton">Save User</button>
+</div>
+
+<div>
+    <h2>Saved Users</h2>
+    <div id="userList"></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Event listener for the Save User button
+    document.getElementById('saveButton').addEventListener('click', function () {
+        const usernameInput = document.getElementById('username');
+        const ageInput = document.getElementById('age');
+
+        const username = usernameInput.value;
+        const age = ageInput.value;
+
+        if (username.trim() === "" || age.trim() === "") {
+            alert("Please enter both username and age.");
+            return;
+        }
+
+        // Create a new user object
+        const user = {
+            username: username,
+            age: age,
+            // Add other properties as needed
+        };
+
+        // Retrieve existing users from localStorage or initialize an empty array
+        const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
+
+        // Add the new user to the array
+        existingUsers.push(user);
+
+        // Save the updated array back to localStorage
+        localStorage.setItem('users', JSON.stringify(existingUsers));
+
+        // Update the user list on the page
+        updateUsersList();
+
+        // Clear the input fields after saving
+        usernameInput.value = "";
+        ageInput.value = "";
+    });
+
+    // Function to update the user list on the page
+    function updateUsersList() {
+        const userListElement = document.getElementById('userList');
+        userListElement.innerHTML = ''; // Clear the existing list
+
+        // Retrieve users from localStorage
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+
+        // Display each user in the list
+        users.forEach(function (user) {
+            // Create a container div for each user
+            const userContainer = document.createElement('div');
+            userContainer.classList.add('user-item');
+
+            // Create an element for the username
+            const usernameElement = document.createElement('div');
+            usernameElement.classList.add('userame');
+            usernameElement.textContent = user.username;
+
+            // Create an element for the age
+            const ageElement = document.createElement('div');
+            ageElement.classList.add('age');
+            ageElement.textContent = `Age: ${user.age}`;
+
+            // Create a button for each user to set the username and age in the input box
+            const setButton = document.createElement('button');
+            setButton.classList.add('set-button');
+            setButton.textContent = 'Set';
+            setButton.addEventListener('click', function () {
+                document.getElementById('username').value = user.username;
+                document.getElementById('age').value = user.age;
+            });
+
+            // Append the elements to the user container
+            userContainer.appendChild(usernameElement);
+            userContainer.appendChild(ageElement);
+            userContainer.appendChild(setButton);
+
+            // Append the user container to the user list
+            userListElement.appendChild(userContainer);
+        });
+    }
+
+    // Initial update of the user list
+    updateUsersList();
+});
+</script>
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Click Counter with Cookies</title>
+</head>
+<body>
+  <button id="clickButton">Click me!</button>
+  <button id="showCountButton">Show Click Count</button>
+
+  <script src="index.js"></script>
+</body>
+</html>

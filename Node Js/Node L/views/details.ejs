@@ -1,0 +1,60 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>details page</title>
+</head>
+<body>
+    <div class="details content" >
+        <h3>Details page to delete and update</h3>
+<input type="text" id="title" value="<%= blog.title %>">
+        <div class="content">
+            <input type="text" id="body" value="<%= blog.body %>">
+      
+        </div>
+        <a class="delete" data-doc="<%= blog._id %>">delete</a>
+        </div>
+        <br><br>
+        <a class="update" data-doc="<%= blog._id %>">update</a>
+<script>
+    
+    const trash=document.querySelector('a.delete');
+    const update=document.querySelector('a.update');
+    const titleInput = document.getElementById('title');
+    const bodyInput = document.getElementById('body');   
+    console.log(titleInput.value);
+    console.log('present in the details'+trash.dataset.doc);
+    update.addEventListener('click',()=>{
+        const  endpoints=`/blogs/${trash.dataset.doc}`;
+        const updatedData = {
+            title: document.getElementById('title').value
+        };
+
+
+        console.log(updatedData);
+
+        fetch(endpoints,{
+            method:'PATCH',
+            body: JSON.stringify(updatedData),
+            headers: { 'Content-Type': 'application/json' }
+            
+        })
+        .then((response)=>response.json())
+        .catch(err=>console.log(err));
+    })
+
+
+    trash.addEventListener('click',(e)=>{
+        const endpoint=`/blogs/${trash.dataset.doc}`;
+
+        fetch(endpoint,{
+        method:'DELETE'
+        })
+        .then((response)=>response.json())
+        .then((data)=>window.location.href = data.redirect)
+        .catch(err=>console.error(err));
+    })
+</script>
+
+</body>
+</html>

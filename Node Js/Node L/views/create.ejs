@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>create page  | <%= title%></title>
+</head>
+<body>
+    <nav>
+        <a href="/">Homepage</a>
+        <a href="/about">about</a>
+        <a href="/blogs/blog/create">create</a>
+    </nav>
+
+    <div class=" create-blog content" >
+        <form action="/blogs" method="POST">
+       <label for="tit1e">B1og title:</label>
+        
+        <input type="text" id="title" name="title" required>
+        <label for="snippet">B1og snippet:</label>
+        <input type="text" id="snippet" name="snippet" required>
+        
+        <label for="body">B1og body: </label>
+        <textarea id="body" name="body" required></textarea>
+        <button>Submit</button>
+        </div>
+
+</body>
+</html>
